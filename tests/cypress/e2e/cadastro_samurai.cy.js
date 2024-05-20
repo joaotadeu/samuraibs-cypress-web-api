@@ -3,7 +3,7 @@
 describe('cadastro de cliente', () => {
     it('deve cadastrar cliente com sucesso', () => {
         const name = 'João Tadeu'
-        const email = 'joaotadeu1@gmail.com'
+        const email = 'joaotadeu@gmail.com'
         const password = '1234qwe'
 
       cy.visit('http://localhost:3000/signup')
@@ -14,7 +14,13 @@ describe('cadastro de cliente', () => {
       cy.get('input[placeholder="E-mail"]').type(email)
       cy.get('input[placeholder="Senha"]').type(password)
 
+      cy.intercept('POST' ,'http://localhost:3333/users', {
+        statusCode: 200
+      }).as('postUser')
+
       cy.contains('button[type="submit"]', 'Cadastrar').click()
+
+      cy.wait('@postUser')
 
       cy.get('.toast')
           .should('be.visible')
