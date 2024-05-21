@@ -4,8 +4,8 @@ describe('cadastro de cliente', () => {
 
       const user = {
             name: ' João Tadeu S. Pereira',
-            email: 'joaotadeu@gmail.com',
-            password: '1234qwe'
+            email: 'joaotadeu@samurai.com',
+            password: '1234qwe',
       }
 
     it('deve cadastrar cliente com sucesso', () => {
@@ -31,13 +31,34 @@ describe('cadastro de cliente', () => {
     })
 
     it('deve cadastrar cliente sem sucesso', () => {
+
+      const user = {
+            name: 'Diana Anjos',
+            email: 'diana@samurai1.com',
+            password: '123qwe',
+            is_provider: true
+      }
+
+    cy.task('removeUser', user.email)
+       .then(function(result){
+          console.log(result)
+      })  
+
+    cy.request(
+        'POST',
+        'http://localhost:3333/users',
+         user
+      ).then(function(response){
+         expect(response.status).to.eq(200)
+      })
+
     cy.visit('http://localhost:3000/signup')
     cy.title()
           .should('eq', 'Samurai Barbershop by QAninja')
 
-    cy.get('input[placeholder="Nome"]').type(name)
-    cy.get('input[placeholder="E-mail"]').type(email)
-    cy.get('input[placeholder="Senha"]').type(password)
+    cy.get('input[placeholder="Nome"]').type(user.name)
+    cy.get('input[placeholder="E-mail"]').type(user.email)
+    cy.get('input[placeholder="Senha"]').type(user.password)
 
     cy.contains('button[type="submit"]', 'Cadastrar').click()
 
