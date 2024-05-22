@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import cadastroPage from '../support/pages/cadastro'
+
 describe('Dado que cadastro de cliente', () => {
 
       context('Quando o usuario é novo', () => {
@@ -17,23 +19,11 @@ describe('Dado que cadastro de cliente', () => {
             })
 
             it('então deve cadastrar cliente com sucesso', () => {
-
-                  cy.visit('http://localhost:3000/signup')
-                  cy.title()
-                        .should('eq', 'Samurai Barbershop by QAninja')
-
-                  cy.get('input[placeholder="Nome"]').type(user.name)
-                  cy.get('input[placeholder="E-mail"]').type(user.email)
-                  cy.get('input[placeholder="Senha"]').type(user.password)
-
-                  cy.contains('button[type="submit"]', 'Cadastrar').click()
-
-                  cy.get('.toast')
-                        .should('be.visible')
-                        .find('p')
-                        .should('have.text', 'Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
+                  cadastroPage.homePage()
+                  cadastroPage.form(user)
+                  cadastroPage.cadastrar()
+                  cadastroPage.toastText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
             })
-
       })
 
       context('Quando o usuario já existe', () => {
@@ -60,23 +50,10 @@ describe('Dado que cadastro de cliente', () => {
             })
 
             it('deve cadastrar cliente sem sucesso', () => {
-
-                  cy.visit('http://localhost:3000/signup')
-                  cy.title()
-                        .should('eq', 'Samurai Barbershop by QAninja')
-
-                  cy.get('input[placeholder="Nome"]').type(user.name)
-                  cy.get('input[placeholder="E-mail"]').type(user.email)
-                  cy.get('input[placeholder="Senha"]').type(user.password)
-
-                  cy.contains('button[type="submit"]', 'Cadastrar').click()
-
-                  cy.get('.toast')
-                        .should('be.visible')
-                        .find('p')
-                        .should('have.text', 'Email já cadastrado para outro usuário.')
+                  cadastroPage.homePage()
+                  cadastroPage.form(user)
+                  cadastroPage.cadastrar()
+                  cadastroPage.toastText('Email já cadastrado para outro usuário.')
             })
-
       })
-
 })
