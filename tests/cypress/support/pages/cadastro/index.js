@@ -1,3 +1,5 @@
+import { el } from './mapa_elements'
+
 class cadastroPage {
 
     homePage() {
@@ -7,17 +9,17 @@ class cadastroPage {
     }
 
     form(user) {
-        cy.get('input[placeholder="Nome"]').type(user.name)
-        cy.get('input[placeholder="E-mail"]').type(user.email)
-        cy.get('input[placeholder="Senha"]').type(user.password)
+        cy.get(el.name).type(user.name)
+        cy.get(el.email).type(user.email)
+        cy.get(el.password).type(user.password)
     }
 
     cadastrar() {
-        cy.contains('button[type="submit"]', 'Cadastrar').click()
+        cy.contains(el.cadastrar).click()
     }
 
     toastText(expectText) {
-        cy.get('.toast')
+        cy.get(el.toast)
             .should('be.visible')
             .find('p')
             .should('have.text', expectText)
