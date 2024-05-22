@@ -77,30 +77,32 @@ describe('Dado que cadastro de cliente', () => {
       context('Quando a senha está incorreta', () => {
             const passwords = ['1', '2a', 'ab3', 'abc4', 'ab#c5', 'abc36']
 
-
-
             beforeEach(() => {
                   cadastroPage.homePage()
             })
 
             passwords.forEach((p) => {
-
                   it('Então não deve cadastrar e apresentar erro no campo senha', () => {
                         const user = {
                               name: 'Manu Anjos',
                               email: 'manu.anjos@gmail.com',
                               password: p
                         }
-
                         cadastroPage.formularioCadastro(user)
                         cadastroPage.cadastrar()
-
                   })
             })
 
             afterEach(() => {
                   cadastroPage.errorCiclo()
             })
+      })
 
+      context('Quando não preencho campos e tento cadastrar', () => {
+            it('Então não deve cadastrar e apresentar erro', () => {
+                  cadastroPage.homePage()
+                  cadastroPage.cadastrar()
+                  cadastroPage.errorCiclo()
+            })
       })
 })
