@@ -20,7 +20,7 @@ describe('Dado que cadastro de cliente', () => {
 
             it('então deve cadastrar cliente com sucesso', () => {
                   cadastroPage.homePage()
-                  cadastroPage.form(user)
+                  cadastroPage.formularioCadastro(user)
                   cadastroPage.cadastrar()
                   cadastroPage.toastText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
             })
@@ -51,9 +51,27 @@ describe('Dado que cadastro de cliente', () => {
 
             it('deve cadastrar cliente sem sucesso', () => {
                   cadastroPage.homePage()
-                  cadastroPage.form(user)
+                  cadastroPage.formularioCadastro(user)
                   cadastroPage.cadastrar()
                   cadastroPage.toastText('Email já cadastrado para outro usuário.')
             })
+      })
+
+      context('Quando o email está incorreto', () => {
+
+            const user = {
+                  name: 'Manu Anjos',
+                  email: 'manu.anjos.com',
+                  password: '1234qwer'
+            }
+
+
+            it('Então deve efetuar a tentativa de cadastro com mensagem de alerta', () => {
+                  cadastroPage.homePage()
+                  cadastroPage.formularioCadastro(user)
+                  cadastroPage.cadastrar()
+                  cadastroPage.errorCiclo()
+            })
+
       })
 })

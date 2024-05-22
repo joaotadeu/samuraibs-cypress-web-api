@@ -8,7 +8,7 @@ class cadastroPage {
             .should('eq', 'Samurai Barbershop by QAninja')
     }
 
-    form(user) {
+    formularioCadastro(user) {
         cy.get(el.name).type(user.name)
         cy.get(el.email).type(user.email)
         cy.get(el.password).type(user.password)
@@ -23,6 +23,11 @@ class cadastroPage {
             .should('be.visible')
             .find('p')
             .should('have.text', expectText)
+    }
+
+    errorCiclo() {
+        cy.get('.sc-AxiKw')
+            .should('be.visible')
     }
 }
 
