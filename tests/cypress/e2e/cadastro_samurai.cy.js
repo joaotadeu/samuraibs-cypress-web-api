@@ -9,7 +9,7 @@ describe('Dado que cadastro de cliente', () => {
                   password: '1234qwe',
             }
 
-            before(function () {
+            before(() => {
                   cy.task('removeUser', user.email)
                         .then(function (result) {
                               console.log(result)
@@ -44,7 +44,7 @@ describe('Dado que cadastro de cliente', () => {
                   is_provider: true
             }
 
-            before(function () {
+            before(() => {
                   cy.task('removeUser', user.email)
                         .then(function (result) {
                               console.log(result)
@@ -60,8 +60,6 @@ describe('Dado que cadastro de cliente', () => {
             })
 
             it('deve cadastrar cliente sem sucesso', () => {
-
-
 
                   cy.visit('http://localhost:3000/signup')
                   cy.title()
