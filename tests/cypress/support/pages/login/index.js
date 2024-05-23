@@ -1,17 +1,19 @@
+import { el } from './mapa_elements'
+
 class loginPage {
-    login() {
+    homePageLogin() {
         cy.visit('http://localhost:3000/')
         cy.title()
             .should('eq', 'Samurai Barbershop by QAninja')
     }
 
-    formLogin(user) {
-        cy.get("input[placeholder$='mail']").type(user.email)
-        cy.get(" input[placeholder$='Senha']").type(user.password)
+    formularioLogin(user) {
+        cy.get(el.email).type(user.email)
+        cy.get(el.password).type(user.password)
     }
 
     logar() {
-        cy.contains('button[type=submit]', 'Entrar')
+        cy.contains(el.submitButton)
             .click()
     }
 
