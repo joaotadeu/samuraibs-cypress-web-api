@@ -4,7 +4,7 @@ import toast from '../../components/toast'
 
 class loginPage {
 
-    constructor(){
+    constructor() {
         this.toast = toast
     }
     homePageLogin() {
@@ -21,6 +21,11 @@ class loginPage {
     logar() {
         cy.contains(el.submitButton)
             .click()
+    }
+
+    alertText(expectText) {
+        cy.contains(el.alertError, expectText)
+            .should('be.visible')
     }
 
 }
