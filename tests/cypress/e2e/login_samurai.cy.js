@@ -50,8 +50,6 @@ describe('Login', () => {
     })
 
     context('quando efetuo login com email invalido ', () => {
-
-
         const emails = [
             'joao.com.br',
             '@gmail.com',
