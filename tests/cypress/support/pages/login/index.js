@@ -1,6 +1,12 @@
 import { el } from './mapa_elements'
+import toast from '../../components/toast'
+
 
 class loginPage {
+
+    constructor(){
+        this.toast = toast
+    }
     homePageLogin() {
         cy.visit('http://localhost:3000/')
         cy.title()
