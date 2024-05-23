@@ -22,7 +22,7 @@ describe('Dado que cadastro de cliente', () => {
                   cadastroPage.homePage()
                   cadastroPage.formularioCadastro(user)
                   cadastroPage.cadastrar()
-                  cadastroPage.toastText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
+                  cadastroPage.toast.deveExibirToast('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
             })
       })
 
@@ -53,7 +53,7 @@ describe('Dado que cadastro de cliente', () => {
                   cadastroPage.homePage()
                   cadastroPage.formularioCadastro(user)
                   cadastroPage.cadastrar()
-                  cadastroPage.toastText('Email já cadastrado para outro usuário.')
+                  cadastroPage.toast.deveExibirToast('Email já cadastrado para outro usuário.')
             })
       })
 

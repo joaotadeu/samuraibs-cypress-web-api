@@ -1,6 +1,11 @@
 import { el } from './mapa_elements'
+import toast from '../../components/toast'
 
 class cadastroPage {
+
+    constructor() {
+        this.toast = toast
+    }
 
     homePage() {
         cy.visit('http://localhost:3000/signup')
@@ -16,13 +21,6 @@ class cadastroPage {
 
     cadastrar() {
         cy.contains(el.cadastrar).click()
-    }
-
-    toastText(expectText) {
-        cy.get(el.toast)
-            .should('be.visible')
-            .find('p')
-            .should('have.text', expectText)
     }
 
     errorCiclo() {
