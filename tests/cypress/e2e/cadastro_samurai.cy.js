@@ -12,10 +12,7 @@ describe('Dado que cadastro de cliente', () => {
             }
 
             before(() => {
-                  cy.task('removeUser', user.email)
-                        .then(function (result) {
-                              console.log(result)
-                        })
+                  cy.removeUser(user)
             })
 
             it('então deve cadastrar cliente com sucesso', () => {
@@ -35,18 +32,7 @@ describe('Dado que cadastro de cliente', () => {
             }
 
             before(() => {
-                  cy.task('removeUser', user.email)
-                        .then(function (result) {
-                              console.log(result)
-                        })
-
-                  cy.request(
-                        'POST',
-                        'http://localhost:3333/users',
-                        user
-                  ).then(function (response) {
-                        expect(response.status).to.eq(200)
-                  })
+                  cy.postUser(user)
             })
 
             it('deve cadastrar cliente sem sucesso', () => {
