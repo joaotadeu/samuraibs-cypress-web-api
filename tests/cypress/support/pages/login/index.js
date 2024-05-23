@@ -1,5 +1,5 @@
 class loginPage {
-    login(){
+    login() {
         cy.visit('http://localhost:3000/')
         cy.title()
             .should('eq', 'Samurai Barbershop by QAninja')
@@ -7,10 +7,10 @@ class loginPage {
 
     formLogin(user) {
         cy.get("input[placeholder$='mail']").type(user.email)
-        cy.get(" input[placeholder$='Senha']").type(user.password)  
+        cy.get(" input[placeholder$='Senha']").type(user.password)
     }
 
-    logar(){
+    logar() {
         cy.contains('button[type=submit]', 'Entrar')
             .click()
     }
