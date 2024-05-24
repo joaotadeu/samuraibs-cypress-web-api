@@ -3,6 +3,7 @@
 import loginPage from '../support/pages/login'
 import dashPage from '../support/pages/dash'
 
+
 describe('Login', () => {
     context('quando efetuo login com sucesso', () => {
         const user = {
@@ -67,16 +68,26 @@ describe('Login', () => {
                 loginPage.homePageLogin()
                 loginPage.formularioLogin(user)
                 loginPage.logar()
-                loginPage.alertText('Informe um email válido')
+                loginPage.alert.deveTerTexto('Informe um email válido')
             })
         })
     })
 
     context('quando tento logar sem preencher nenhum dos campos', () => {
+        const alertMessages = [
+            'E-mail é obrigatório',
+            'Senha é obrigatória'
+        ]
 
-        it('então deve apresetar erro', () => {
+        beforeEach(() => {
             loginPage.homePageLogin()
             loginPage.logar()
-        })
-    })
-})
+        });
+
+        alertMessages.forEach((alert) => {
+            it('deve exibir ' + alert.toLocaleLowerCase(), () => {
+                loginPage.alert.deveTerTexto(alert)
+            });
+        });
+    });
+});

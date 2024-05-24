@@ -1,11 +1,13 @@
 import { el } from './mapa_elements'
 import toast from '../../components/toast'
+import alert from '../../components/alert'
 
 
 class loginPage {
 
     constructor() {
         this.toast = toast
+        this.alert = alert
     }
     homePageLogin() {
         cy.visit('http://localhost:3000/')

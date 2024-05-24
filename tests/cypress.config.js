@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const { Pool } = require('pg');
 
 module.exports = defineConfig({
-  projectId: 'r53n29',
+  projectId: '',
   e2e: {
     viewportWidth: 1920,
     viewportHeight: 1080,

@@ -1,10 +1,12 @@
 import { el } from './mapa_elements'
 import toast from '../../components/toast'
+import alert from '../../components/alert'
 
 class cadastroPage {
 
     constructor() {
         this.toast = toast
+        this.alert = alert
     }
 
     homePage() {
