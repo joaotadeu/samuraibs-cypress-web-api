@@ -71,4 +71,12 @@ describe('Login', () => {
             })
         })
     })
+
+    context('quando tento logar sem preencher nenhum dos campos', () => {
+
+        it('então deve apresetar erro', () => {
+            loginPage.homePageLogin()
+            loginPage.logar()
+        })
+    })
 })
