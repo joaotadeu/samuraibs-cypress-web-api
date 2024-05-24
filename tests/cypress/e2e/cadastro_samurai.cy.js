@@ -4,23 +4,20 @@ import cadastroPage from '../support/pages/cadastro'
 
 describe('Dado que cadastro de cliente', () => {
 
-      before(function() {
-            cy.fixture('massaDados_cadastro')
-                  .then(function(massaDados) {
-                        this.massaDados = massaDados
-                  })
-
-      })
-
       context('Quando o usuario é novo', () => {
+            const user = {
+                  name: ' João Tadeu S. Pereira',
+                  email: 'joaotadeu@samurai.com',
+                  password: '1234qwe',
+            }
 
-            before(function() {
-                  cy.removeUser(this.massaDados.email)
+            before(() => {
+                  cy.removeUser(user)
             })
 
-            it('então deve cadastrar cliente com sucesso',function () {
+            it('então deve cadastrar cliente com sucesso', () => {
                   cadastroPage.homePage()
-                  cadastroPage.formularioCadastro(this.massaDados)
+                  cadastroPage.formularioCadastro(user)
                   cadastroPage.cadastrar()
                   cadastroPage.toast.deveExibirToast('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
             })

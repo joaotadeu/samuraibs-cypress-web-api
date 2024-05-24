@@ -13,8 +13,8 @@ Cypress.Commands.add('postUser', (user) => {
     })
 })
 
-Cypress.Commands.add('removeUser', function() {
-    cy.task('removeUser', this.massaDados.email)
+Cypress.Commands.add('removeUser', (user) => {
+    cy.task('removeUser', user.email)
         .then(function (result) {
             console.log(result)
         })
