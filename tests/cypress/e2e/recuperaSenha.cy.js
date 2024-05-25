@@ -10,7 +10,7 @@ describe('Dado que efetuo recuperação de senha', function() {
         })
     })
 
-    context.only('Quando o usuario esquece a senha', function(){
+    context('Quando o usuario esquece a senha', function(){
 
         before(function(){
             cy.postUser(this.solicitar_recuperacao)
@@ -25,7 +25,7 @@ describe('Dado que efetuo recuperação de senha', function() {
         })
     })
 
-    context('Quando cliente solicita o resgate', function() {
+    context.only('Quando cliente solicita o resgate', function() {
 
         before(function(){
             cy.postUser(this.data)
