@@ -2,37 +2,37 @@
 
 import esqueciSenhaPage from '../support/pages/esqueciSenha'
 
-describe('Dado que efetuo recuperação de senha', function() {
+describe('Dado que efetuo recuperação de senha', function () {
 
-    before(function(){
-        cy.fixture('recuperarSenha').then(function(recuperarSenha) {
-            this.solicitar_recuperacao = recuperarSenha.solicitar_recuperacao 
+    before(function () {
+        cy.fixture('recuperarSenha').then(function (recuperarSenha) {
+            this.solicitar_recuperacao = recuperarSenha.solicitar_recuperacao
         })
     })
 
-    context('Quando o usuario esquece a senha', function(){
+    context('Quando o usuario esquece a senha', function () {
 
-        before(function(){
+        before(function () {
             cy.postUser(this.solicitar_recuperacao)
         })
 
-        it('então deve ter sucesso na recuperação da senha', function(){
-                esqueciSenhaPage.homeEsqueciSenha()
-                esqueciSenhaPage.formularioEsqueciSenha(this.solicitar_recuperacao)
-                esqueciSenhaPage.recuperarSenha()
-                esqueciSenhaPage.toast.deveExibirToast('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
+        it('então deve ter sucesso na recuperação da senha', function () {
+            esqueciSenhaPage.homeEsqueciSenha()
+            esqueciSenhaPage.formularioEsqueciSenha(this.solicitar_recuperacao)
+            esqueciSenhaPage.recuperarSenha()
+            esqueciSenhaPage.toast.deveExibirToast('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
 
         })
     })
 
-    context.only('Quando cliente solicita o resgate', function() {
+    context.only('Quando cliente solicita o resgate', function () {
 
-        before(function(){
-            cy.postUser(this.data)
+        before(function () {
+            cy.postUser(this.solicitar_recuperacao)
         })
 
-        it('Então deve porder cadastrar uma nova senha', function(){
-
+        it('Então deve porder cadastrar uma nova senha', function () {
+                
         })
     })
 })
