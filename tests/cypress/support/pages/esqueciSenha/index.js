@@ -11,10 +11,10 @@ class esqueciSenhaPage {
         cy.visit('http://localhost:3000/forgot-password')
     }
 
-    formularioEsqueciSenha(email){
+    formularioEsqueciSenha(usuario){
         cy.get(el.email)
             .clear()
-            .type(email)
+            .type(usuario.email)
     }
 
     recuperarSenha(){

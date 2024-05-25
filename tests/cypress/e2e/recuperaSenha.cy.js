@@ -3,23 +3,35 @@
 import esqueciSenhaPage from '../support/pages/esqueciSenha'
 
 describe('Dado que efetuo recuperação de senha', function() {
+
     before(function(){
-        cy.fixture('recovery').then(function(recovery) {
-            this.dados = recovery 
+        cy.fixture('recuperarSenha').then(function(recuperarSenha) {
+            this.solicitar_recuperacao = recuperarSenha.solicitar_recuperacao 
         })
     })
 
-    context('Quando o usuario esquece a senha', function(){
+    context.only('Quando o usuario esquece a senha', function(){
 
         before(function(){
-            cy.postUser(this.dados)
+            cy.postUser(this.solicitar_recuperacao)
         })
 
         it('então deve ter sucesso na recuperação da senha', function(){
                 esqueciSenhaPage.homeEsqueciSenha()
-                esqueciSenhaPage.formularioEsqueciSenha(this.dados.email)
+                esqueciSenhaPage.formularioEsqueciSenha(this.solicitar_recuperacao)
                 esqueciSenhaPage.recuperarSenha()
                 esqueciSenhaPage.toast.deveExibirToast('Enviamos um e-mail para confirmar a recuperação de senha, cheque sua caixa de entrada.')
+
+        })
+    })
+
+    context('Quando cliente solicita o resgate', function() {
+
+        before(function(){
+            cy.postUser(this.data)
+        })
+
+        it('Então deve porder cadastrar uma nova senha', function(){
 
         })
     })
