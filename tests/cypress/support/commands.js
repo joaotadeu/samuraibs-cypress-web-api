@@ -30,7 +30,7 @@ Cypress.Commands.add('recuperaSenha', function (email) {
 
         cy.task('encontrarToken', email)
             .then(function (result) {
-                console.log(result.token)
+                //console.log(result.token)
                 Cypress.env('recuperaToken', result.token)
             })
     })

@@ -20,9 +20,9 @@ module.exports = defineConfig({
           return new Promise((resolve, reject) => {
             pool.query('DELETE FROM public.users WHERE email = $1', [email], (error, result) => {
               if (error) {
-                return reject(error); // Rejeita a promise com o erro
+                return reject(error);
               }
-              resolve({ success: result.rowCount }); // Retorna o número de linhas afetadas
+              resolve({ success: result.rowCount });
             });
           });
         },
@@ -31,9 +31,9 @@ module.exports = defineConfig({
           return new Promise((resolve, reject) => {
             pool.query('SELECT ut.token FROM user_tokens ut INNER JOIN users u ON ut.user_id = u.id WHERE u.email = $1 ORDER BY ut.created_at;', [email], (error, result) => {
               if (error) {
-                return reject(error); // Rejeita a promise com o erro
+                return reject(error);
               }
-              resolve({ token: result.rows[0].token }); // Retorna o token
+              resolve({ token: result.rows[0].token }); 
             });
           });
         }

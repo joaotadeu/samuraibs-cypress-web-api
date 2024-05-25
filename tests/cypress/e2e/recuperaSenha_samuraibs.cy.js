@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import esqueciSenhaPage from '../support/pages/esqueciSenha'
+import resetPassword from '../support/pages/resetSenha'
 
 describe('Dado que efetuo recuperação de senha', function () {
 
@@ -33,7 +34,14 @@ describe('Dado que efetuo recuperação de senha', function () {
         })
 
         it('Então deve porder cadastrar uma nova senha', function () {
-            console.log(Cypress.env('recuperaToken'))
+            const token = (Cypress.env('recuperaToken'))
+            
+            resetPassword.homeResetPassword(token)
+            resetPassword.formularioNovaSenha('123qwe','123qwe')
+            resetPassword.recuperarSenhaBotao()
+
+            resetPassword.toast.deveExibirToast('Agora você já pode logar com a sua nova senha secreta.')
+          
         })
     })
 })
