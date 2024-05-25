@@ -19,3 +19,20 @@ Cypress.Commands.add('removeUser', function (email) {
             console.log(result)
         })
 })
+
+Cypress.Commands.add('recuperaSenha', function (email) {
+    cy.request(
+        'POST',
+        'http://localhost:3333/password/forgot',
+        { email: email }
+    ).then(function (response) {
+        expect(response.status).to.eq(204)
+
+        cy.task('encontrarToken', email)
+            .then(function (result) {
+                console.log(result.token)
+                Cypress.env('recuperaToken', result.token)
+            })
+    })
+
+})

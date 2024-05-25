@@ -29,10 +29,11 @@ describe('Dado que efetuo recuperação de senha', function () {
 
         before(function () {
             cy.postUser(this.solicitar_recuperacao)
+            cy.recuperaSenha(this.solicitar_recuperacao.email)
         })
 
         it('Então deve porder cadastrar uma nova senha', function () {
-                
+            console.log(Cypress.env('recuperaToken'))
         })
     })
 })
