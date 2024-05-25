@@ -26,7 +26,7 @@ describe('Dado que efetuo recuperação de senha', function () {
         })
     })
 
-    context.only('Quando cliente solicita o resgate', function () {
+    context('Quando cliente solicita o resgate', function () {
 
         before(function () {
             cy.postUser(this.solicitar_recuperacao)
@@ -35,7 +35,7 @@ describe('Dado que efetuo recuperação de senha', function () {
 
         it('Então deve porder cadastrar uma nova senha', function () {
             const token = (Cypress.env('recuperaToken'))
-            
+
             resetPassword.homeResetPassword(token)
             resetPassword.formularioNovaSenha('123qwe','123qwe')
             resetPassword.recuperarSenhaBotao()
