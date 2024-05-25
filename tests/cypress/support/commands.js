@@ -1,4 +1,4 @@
-Cypress.Commands.add('postUser', (user) => {
+Cypress.Commands.add('postUser', function (user) {
     cy.task('removeUser', user.email)
         .then(function (result) {
             console.log(result)
@@ -13,8 +13,8 @@ Cypress.Commands.add('postUser', (user) => {
     })
 })
 
-Cypress.Commands.add('removeUser', (user) => {
-    cy.task('removeUser', user.email)
+Cypress.Commands.add('removeUser', function (email) {
+    cy.task('removeUser', email)
         .then(function (result) {
             console.log(result)
         })

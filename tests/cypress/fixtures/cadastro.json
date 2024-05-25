@@ -1,6 +1,18 @@
 {
-    "name": "João Tadeu S. Pereira",
-    "email": "joaotadeu@samurai.com",
-    "password": "1234qwe",
-    "is_provider": true
+    "cadastro_sucesso": {
+        "name": "João Tadeu S. Pereira",
+        "email": "joaotadeu@samurai.com",
+        "password": "1234qwe"
+    },
+    "email_jaExiste": {
+        "name": "João Tadeu S. Pereira",
+        "email": "joaotadeu@samurai.com",
+        "password": "1234qwe",
+        "is_provider": true
+    },
+    "email_incorreto": {
+        "name": "João Tadeu S. Pereira",
+        "email": "joaotadeu.samurai.com",
+        "password": "1234qwe"
+    }
 }
