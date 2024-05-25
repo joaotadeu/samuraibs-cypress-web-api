@@ -3,7 +3,6 @@
 import loginPage from '../support/pages/login'
 import dashPage from '../support/pages/dash'
 
-
 describe('Login', () => {
     context('quando efetuo login com sucesso', () => {
         const user = {
