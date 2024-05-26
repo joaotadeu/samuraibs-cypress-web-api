@@ -36,3 +36,22 @@ Cypress.Commands.add('recuperaSenha', function (email) {
     })
 
 })
+
+Cypress.Commands.add('apiLogin', function (user) {
+    const payload = {
+        email: user.email,
+        password: user.password
+    }
+
+    cy.request({
+        method: 'POST',
+        url: 'http://localhost:3333/sessions',
+        body: payload
+    }).then(function (response) {
+        expect(response.status).to.eq(200);
+        
+        const token = response.body.token;
+        Cypress.env('apiToken', token);
+        return token;
+    })
+})
