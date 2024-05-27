@@ -8,18 +8,23 @@ class areaLogada {
     }
 
     calendarioVisivel() {
-        cy.get('.DayPicker', {timeout: 9000})
-                .should('be.visible')
+        cy.get(el.calendario, { timeout: 9000 })
+            .should('be.visible')
     }
 
-    diaSelecionado(dia){
+    diaSelecionado(dia) {
         const target = new RegExp('^' + dia + '$', 'g')
-        cy.contains('.DayPicker-Day--available', target)
+        cy.contains(el.diaSelecionado, target)
             .click()
     }
 
     apontamentoVisivel(cliente) {
-        cy.log('sucesso')
+        cy.contains('div', cliente, { timeout: 10000 })
+            .should('be.visible')
+            .then($el => {
+                cy.log('Elemento encontrado: ', $el);
+            });
+        cy.log('sucesso');
     }
 
 }
