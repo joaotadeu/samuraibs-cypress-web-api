@@ -90,8 +90,10 @@ Cypress.Commands.add('setProviderId', function (barbeiroEmail) {
 Cypress.Commands.add('createAppointment', function () {
     let now = new Date()
     now.setDate(now.getDate() + 1)
-    const date = moment(now).format('YYYY-MM-DD 14:00:00')
 
+    Cypress.env('appointmentDay', now.getDate())
+
+    const date = moment(now).format('YYYY-MM-DD 14:00:00')
     const token = Cypress.env('apiToken');
     const providerId = Cypress.env('providerId');
 

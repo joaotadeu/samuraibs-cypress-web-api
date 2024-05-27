@@ -1,13 +1,14 @@
 /// <reference types="cypress" />
 
 import loginPage from '../support/pages/login'
+import areaLogada from '../support/pages/dash'
 
 describe('Dado que o cliente está na area logada', function () {
 
     context('Quando o cliente faz um agendamento no App com sucesso', function () {
         const massaDados = {
             cliente: {
-                name: 'Joao Tadeu S. Pereira',
+                name: 'Joao Tadeu',
                 email: 'joaozinho@outlook.com',
                 password: '123qwe',
                 is_provider: false
@@ -36,6 +37,12 @@ describe('Dado que o cliente está na area logada', function () {
             loginPage.homePageLogin()
             loginPage.formularioLogin(massaDados.barbeiro)
             loginPage.logar()
+
+            areaLogada.calendarioVisivel()
+            
+            const dia = Cypress.env('appointmentDay') 
+            areaLogada.diaSelecionado(dia)
+            areaLogada.apontamentoVisivel(massaDados.cliente.name)
         })
     })
 })
