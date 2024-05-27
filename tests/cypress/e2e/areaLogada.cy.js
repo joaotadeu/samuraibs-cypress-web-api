@@ -5,7 +5,7 @@ describe('Dado que o cliente está na area logada', function () {
     context('Quando o cliente faz um agendamento no appMobile', function () {
         const massaDados = {
             cliente: {
-                name: 'Joao tadeu',
+                name: 'Joao Tadeu',
                 email: 'joaozinho@outlook.com',
                 password: '123qwe',
                 is_provider: false
@@ -23,14 +23,11 @@ describe('Dado que o cliente está na area logada', function () {
             cy.postUser(massaDados.cliente)
 
             cy.apiLogin(massaDados.cliente)
-            
-            cy.apiLogin(massaDados.cliente).then((token) => {
-                cy.log('Token recuperado: ' + token);
-            });
+            cy.setProviderId(massaDados.barbeiro.email)
         })
 
         it('Então o mesmo deve ser exibido no dashboard', function () {
-            cy.log('Massa de Dados')
+            cy.log('ID do barbeiro é ' + Cypress.env('providerId'))
         })
     })
 })

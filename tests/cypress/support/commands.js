@@ -42,16 +42,46 @@ Cypress.Commands.add('apiLogin', function (user) {
         email: user.email,
         password: user.password
     }
-
+    
     cy.request({
         method: 'POST',
         url: 'http://localhost:3333/sessions',
         body: payload
-    }).then(function (response) {
-        expect(response.status).to.eq(200);
-        
+    }).then((response) => {
+        expect(response.status).to.eq(200)
+
         const token = response.body.token;
         Cypress.env('apiToken', token);
-        return token;
+        cy.log('Token recuperado: ' + token)
+
+        if (!token) {
+            throw new Error('Token não está disponível. Certifique-se de que apiLogin foi executado.');
+        }
+    })
+})
+
+Cypress.Commands.add('setProviderId', function (barbeiroEmail) {
+    const token = Cypress.env('apiToken');
+    
+    if (!token) {
+        throw new Error('Token não está disponível. Certifique-se de que apiLogin foi executado.');
+    }
+
+    cy.request({
+        method: 'GET',
+        url: 'http://localhost:3333/providers',
+        headers: {
+            authorization: 'Bearer ' + token
+        }
+    }).then(function (response) {
+        expect(response.status).to.eq(200)
+        console.log(response.body)
+
+        const providerList = response.body
+        providerList.forEach(function(provider){
+            if(provider.email == barbeiroEmail) {
+                Cypress.env('providerId', provider.id)
+            }
+        })
     })
 })
