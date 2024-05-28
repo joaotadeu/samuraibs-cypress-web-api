@@ -42,8 +42,10 @@ describe('Dado que o cliente está na area logada', function () {
             
             const dia = Cypress.env('appointmentDay') 
             areaLogada.diaSelecionado(dia)
-            
+
             areaLogada.apontamentoVisivel(massaDados.cliente.name)
         })
     })
+
+    
 })
