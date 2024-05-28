@@ -4,6 +4,10 @@ const { Pool } = require('pg');
 module.exports = defineConfig({
   projectId: '',
   e2e: {
+    video: true,
+    videoUploadOnPasses: true,
+    videoCompression: 32,
+    videosFolder: 'cypress/videos',
     viewportWidth: 1920,
     viewportHeight: 1080,
     setupNodeEvents(on, config) {
