@@ -4,6 +4,8 @@ const { Pool } = require('pg');
 module.exports = defineConfig({
   projectId: '',
   e2e: {
+    screenshotOnRunFailure: false, 
+    screenshotsFolder: 'cypress/screenshots', 
     video: false,
     videoUploadOnPasses: true,
     videoCompression: 32,
