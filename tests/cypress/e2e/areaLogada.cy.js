@@ -33,6 +33,5 @@ describe('Dado que o cliente está na area logada', function () {
             areaLogada.apontamentoVisivel(cliente.name)
         })
     })
-
     
 })
